@@ -80,6 +80,7 @@ class Environment(dict):
 
     if platform.system() == 'Darwin':
         arduino_dist_dir_guesses.insert(0, '/Applications/Arduino.app/Contents/Resources/Java')
+        arduino_dist_dir_guesses.insert(0, '/Applications/Arduino.app/Contents/Java')
 
     default_board_model = 'uno'
     ino = sys.argv[0]
@@ -214,7 +215,7 @@ class Environment(dict):
 
         # boards.txt can be placed in following places
         # - hardware/arduino/boards.txt (Arduino IDE 0.xx, 1.0.x)
-        # - hardware/arduino/{chipset}/boards.txt (Arduino 1.5.x, chipset like `avr`, `sam`)
+        # - hardware/arduino/{chipset}/boards.txt (Arduino 1.5.x-1.6.x, chipset like `avr`, `sam`)
         # - hardware/{platform}/boards.txt (MPIDE 0.xx, platform like `arduino`, `pic32`)
         # we should find and merge them all
         boards_txts = self.find_arduino_file('boards.txt', ['hardware', '**'], 
